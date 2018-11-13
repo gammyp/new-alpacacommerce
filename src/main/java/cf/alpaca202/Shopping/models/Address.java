@@ -39,7 +39,7 @@ public class Address implements Serializable {
   private String address;
 
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
-  @JoinColumn(name="accounts_id")
+  @JoinColumn(name="account_id")
   @OnDelete(action = OnDeleteAction.CASCADE)
   @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
   @JsonIgnore
