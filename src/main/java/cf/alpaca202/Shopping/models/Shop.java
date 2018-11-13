@@ -39,12 +39,12 @@ public class Shop implements Serializable {
 
   @OneToMany(cascade = CascadeType.ALL,
           fetch = FetchType.LAZY,
-          mappedBy = "shopmanagers")
+          mappedBy = "shop")
   private List<ShopManager> shopManagers;
 
   @OneToMany(cascade = CascadeType.ALL,
           fetch = FetchType.LAZY,
-          mappedBy = "Products")
+          mappedBy = "shop")
   private List<Product> products;
 
   @Temporal(TemporalType.TIMESTAMP)
