@@ -40,7 +40,7 @@ public class Account implements Serializable {
 
   @OneToMany(cascade = CascadeType.ALL,
           fetch = FetchType.LAZY,
-          mappedBy = "address")
+          mappedBy = "addresses")
   private List<Address> addresses;
 
   @Column(name = "image_path")
