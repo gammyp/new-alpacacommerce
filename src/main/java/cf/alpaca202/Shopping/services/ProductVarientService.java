@@ -17,4 +17,8 @@ public class ProductVarientService{
     public List<ProductVarient> getProductVarientByProductId(Long productId){
         return productVarientRepository.findByProductId(productId);
     }
+
+    public ProductVarient getProductVarientById(Long id){
+        return productVarientRepository.findById(id).get();
+    }
 }
