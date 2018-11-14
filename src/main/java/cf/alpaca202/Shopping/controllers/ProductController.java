@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -19,8 +20,15 @@ public class ProductController {
   
   @RequestMapping(name = "/", method = RequestMethod.GET)
   public String getAllProducts(Model model) {
-    List<Product> listProduct = productService.getAllProducts();
-    model.addAttribute("product",listProduct);
+    List<Product> productList = productService.getAllProducts();
+    model.addAttribute("productlist",productList);
     return "index";
+  }
+
+  @RequestMapping(name = "/product/{product_id}", method = RequestMethod.GET)
+  public String getProduct(Model model, @PathVariable(name = "product_id") Long productId) {
+    Product product = productService.getProductById(productId);
+    model.addAttribute("product",product);
+    return "productdetail";
   }
 }
