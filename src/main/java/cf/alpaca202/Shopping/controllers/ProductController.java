@@ -18,14 +18,14 @@ public class ProductController {
   @Autowired
   private ProductService productService;
   
-  @RequestMapping(name = "/", method = RequestMethod.GET)
+  @RequestMapping(value = "/", method = RequestMethod.GET)
   public String getAllProducts(Model model) {
     List<Product> productList = productService.getAllProducts();
     model.addAttribute("productlist",productList);
     return "index";
   }
 
-  @RequestMapping(name = "/product/{product_id}", method = RequestMethod.GET)
+  @RequestMapping(value = "/product/{product_id}", method = RequestMethod.GET)
   public String getProduct(Model model, @PathVariable(name = "product_id") Long productId) {
     Product product = productService.getProductById(productId);
     model.addAttribute("product",product);
