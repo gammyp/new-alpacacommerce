@@ -59,27 +59,28 @@
 	</div>
 
 	<div class="container">
-  		<table class="table table-borderless text-center">
-			  <tbody>
-			    <tr class="row">
-			      <td class="col-4">
-			      	<img class="img-thumbnail item-img">
-					<div class="item-name text-left">sssssssss </div>
-					<div class="row">
-						<div class="col-7 item-price pad-l80">
-							THB 450
+		<table class="table table-borderless text-center">
+			<tbody>
+				<tr class="row" >
+					<div th:each="pl : ${productlist}">	
+						<td class="col-4" th:each="pv : ${pl.productVarients}">
+							<img class="img-thumbnail item-img" th:src="${pl.imagePath}">
+							<div class="item-name text-left" th:text="${pl.name}"></div>
+							<div class="item-name text-left" th:text="${pv.name}"></div>
+							<div class="row">
+								<div class="col-7 item-price pad-l100">
+									THB <span th:text="${pv.price}"></span>
+								</div>
+								<div class="col-5 text-left">
+								<a class="text-dark" href="#cart"><i class="fa fa-cart-plus cart-icon ad2cart"></i></a>
+							</div>
 						</div>
-						<div class="col-5 text-left">
-							<a class="text-dark" href="#cart"><i class="fa fa-cart-plus cart-icon"></i></a>
-						</div>
-					</div>
-			      </td>
-			      
-			    </tr>
-			  </tbody>
+					</td>
+				</tr>
+			</tbody>
 		</table>
 	</div>
-   
+
 	<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js"></script>
   	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js"></script>
@@ -89,8 +90,8 @@
 			$('.ad2cart').click(function (){
 	  			itemCount ++;
 	  			$('#itemCount').html(itemCount).css('display', 'block');
-			}); 
-
+			});
+		});
 	</script>
 </body>
 </html>
