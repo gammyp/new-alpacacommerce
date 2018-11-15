@@ -4,29 +4,25 @@
 		<div layout:fragment="content">
 			<div class="container pad-t20">
 				<div class="row">
-					<div class="col-4">
-						<img src="https://notebookspec.com/nbs/upload_notebook/20180803-132021_c.jpg" class="img-fluid">
+					<div class="col-4" th:each="product : ${product}">
+						<img th:src="${product.imagePath}" class='img-fluid'>
 					</div>
 					<div class="col-8">
 						<table class="table table-borderless">
 							<thead >
-								<tr >
-									<td class="pd-name" style="border-bottom: 2px solid black;">MSI GL73 8RC032 17.3
-		High Performance Gaming Laptop</td>
+								<tr th:each="product : ${product}">
+									<td class="pd-name" style="border-bottom: 2px solid black;" th:text="${product.name}"></td>
 								</tr>
 							</thead>
 							<tbody>
-								<tr class="pd-price">
-									<td>THB 28,900</td>
+								<tr class="pd-price" th:each="productVarient : ${product.productVarients}">
+									<td>THB <span th:text="${productVarient.price}"></span></td>
 								</tr>
-								<tr>
+								<tr th:each="product : ${product}">
 									<td>
-											<li>Coffee</li>
-											<li>Tea</li>
-											<li>Milk</li>
-											<li>Coffee</li>
-											<li>Tea</li>
-											<li>Milk</li>
+										<ul th:if="${product.description} != null"  th:each="text : ${#strings.arraySplit(product.description, ',')}">
+											<li th:text="${text}"></li>
+										</ul>
 									</td>
 								</tr>
 							</tbody>
