@@ -27,9 +27,13 @@
 								</tr>
 							</tbody>
 						</table>
-						<button type="button" class="btn btn-lg btn-block ad2cart-btn text-center ad2cart" data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content=" &#10004 item added to cart">
-							ADD TO SHOPPING CART
-						</button> 
+						<!-- <form th:method="post" th:action="@{/cart}">
+							<input type="hidden" name="productVarientId" th:value="${productListVarients.id}">
+							<input type="hidden" name="redirect" value="/"> -->
+							<button type="submit" class="btn btn-lg btn-block ad2cart-btn text-center ad2cart" data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content=" &#10004 item added to cart">
+								ADD TO SHOPPING CART
+							</button>
+						<!-- </form> -->
 					</div>
 				</div>
 			</div>

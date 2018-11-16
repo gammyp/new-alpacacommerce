@@ -39,21 +39,25 @@
 			<div class="row">
 				<div th:each="productList : ${productlist}" class="col-4">
 					<div th:each="productListVarients : ${productList.productVarients}">
-						<a th:href="'/product/'+${productList.id}">
+						<a th:href="@{/product/{id}(id=${productList.id})}">
 							<img class="item-img" th:src="${productList.imagePath}">
 							<div class="text-primary text-left">
 								<span th:text="${productList.name}"></span>
 								<span th:text="${productListVarients.name}"></span>
 							</div>
 						</a>
-							<div class="row">
-								<div class="col-7 item-price">
-									THB <span th:text="${productListVarients.price}"></span>
-								</div>
-								<div class="col-5 text-left">
-									<a class="text-dark" href="#cart"><i class="fa fa-cart-plus cart-icon ad2cart"></i></a>
-								</div>
+						<div class="row">
+							<div class="col-7 item-price">
+								THB <span th:text="${productListVarients.price}"></span>
 							</div>
+							<div class="col-5 text-left">
+								<form th:method="post" th:action="@{/cart}">
+									<input type="hidden" name="productVarientId" th:value="${productListVarients.id}">
+									<input type="hidden" name="redirect" value="/">
+									<button type="submit" class="fa fa-cart-plus cart-icon ad2cart text-dark"></button>
+								</form>
+							</div>
+						</div>
 					</div>
 				</div>
 			</div>
