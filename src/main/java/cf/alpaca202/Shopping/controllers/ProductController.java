@@ -18,7 +18,7 @@ public class ProductController {
   @Autowired
   private ProductService productService;
   
-  @RequestMapping(value = {"/","/index.html"}, method = RequestMethod.GET)
+  @RequestMapping(value = "/", method = RequestMethod.GET)
   public String getAllProducts(Model model) {
     List<Product> productList = productService.getAllProducts();
     model.addAttribute("productlist",productList);
