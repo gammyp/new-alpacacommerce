@@ -1,4 +1,4 @@
-package cf.alpaca202.Shopping.repository;
+package cf.alpaca202.Shopping.repositories;
 
 import java.util.List;
 

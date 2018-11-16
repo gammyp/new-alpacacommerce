@@ -1,4 +1,4 @@
-package cf.alpaca202.Shopping.repository;
+package cf.alpaca202.Shopping.repositories;
 
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;

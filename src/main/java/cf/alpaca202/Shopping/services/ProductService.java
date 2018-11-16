@@ -6,7 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import cf.alpaca202.Shopping.models.Product;
-import cf.alpaca202.Shopping.repository.ProductRepository;
+import cf.alpaca202.Shopping.repositories.ProductRepository;
 
 @Service
 public class ProductService{
