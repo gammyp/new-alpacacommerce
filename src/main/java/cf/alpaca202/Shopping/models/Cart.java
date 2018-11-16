@@ -43,8 +43,4 @@ public class Cart {
         }
         this.setTotalPrice(totalPrice);
     }
-
-    public int getTotalItems() {
-        return this.items.size();
-    }
 }
