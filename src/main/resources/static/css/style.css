@@ -112,3 +112,11 @@
 	color: white;
 	padding: 0px;
 }
+.add-border{
+	border: 1px solid #F0EFEF !important;
+}
+.delete-btn{
+	margin-top: 100%;
+    width: 35px;
+    height: 30px;
+}
