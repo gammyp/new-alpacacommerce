@@ -63,6 +63,12 @@ public class Item implements Serializable {
     public Item() {
     }
 
+    public Item(ProductVarient productVarient, int count, double currentPrice) {
+        this.productVarient = productVarient;
+        this.count = count;
+        this.currentPrice = currentPrice;
+    }
+
     public Item(long id, Customer customer, ProductVarient productVarient, int count, double currentPrice, Date createdAt, Date updatedAt) {
         this.id = id;
         this.customer = customer;
@@ -72,8 +78,6 @@ public class Item implements Serializable {
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
-
-    
     
     public long getId() {
         return id;
@@ -130,6 +134,4 @@ public class Item implements Serializable {
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
-
-    
 }
