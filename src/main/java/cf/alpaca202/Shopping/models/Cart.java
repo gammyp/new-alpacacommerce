@@ -1,10 +1,16 @@
 package cf.alpaca202.Shopping.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Cart {
     private List<Item> items;
     private double totalPrice;
+
+    public Cart() {
+        this.items = new ArrayList<Item>();
+        this.totalPrice = 0.0;
+    }
 
     public List<Item> getItems() {
         return this.items;
@@ -30,5 +36,15 @@ public class Cart {
             }
         }
         this.items.add(item);
+
+        double totalPrice = 0;
+        for (Item element : this.items) {
+            totalPrice += element.getCurrentPrice() * element.getCount();
+        }
+        this.setTotalPrice(totalPrice);
+    }
+
+    public int getTotalItems() {
+        return this.items.size();
     }
 }
