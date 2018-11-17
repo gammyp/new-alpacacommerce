@@ -44,16 +44,18 @@ public class CartController {
     return "redirect:"+ redirect;
   }
 
-  @RequestMapping(value = "/cartdelitem/{product_varient_id}", method = RequestMethod.POST)
+  @RequestMapping(value = "/deleteitemcart", method = RequestMethod.POST)
   public String deleteItem(
     HttpSession session,
     @RequestParam Map<String, String> body
   ) {
-    if (session.getAttribute("cart") != null) {
-      Cart cart = (Cart)session.getAttribute("cart");
-      long productVarientId = Long.parseLong(body.get("productVarientId"));
-      cart.deleteItem(productVarientId);
+    if (session.getAttribute("cart") == null) {
+      session.setAttribute("cart", new Cart());
     }
+    Cart cart = (Cart)session.getAttribute("cart");
+    long productVarientId = Long.parseLong(body.get("productVarientId"));
+    cart.deleteItem(productVarientId);
+
     String redirect = body.get("redirect");
     return "redirect:"+ redirect;
   }
