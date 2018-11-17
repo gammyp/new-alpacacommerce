@@ -47,11 +47,7 @@ public class Cart {
             this.items.add(item);            
         }
 
-        double totalPrice = 0;
-        for (Item element : this.items) {
-            totalPrice += element.getCurrentPrice() * element.getCount();
-        }
-        this.setTotalPrice(totalPrice);
+        this.calculateTotalPrice();
     }
 
     public void deleteItem(long productVarientId) {
@@ -61,5 +57,14 @@ public class Cart {
                 break;
             }
         }
+        this.calculateTotalPrice();
+    }
+
+    public void calculateTotalPrice() {
+        double totalPrice = 0;
+        for (Item element : this.items) {
+            totalPrice += element.getCurrentPrice() * element.getCount();
+        }
+        this.setTotalPrice(totalPrice);
     }
 }
