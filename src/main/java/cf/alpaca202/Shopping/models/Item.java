@@ -42,12 +42,11 @@ public class Item implements Serializable {
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "product_varient_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
-    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-    @JsonIgnore
     private ProductVarient productVarient;
 
     private int count;
 
+    @Column(name = "current_price")
     private double currentPrice;
 
     @Temporal(TemporalType.TIMESTAMP)
