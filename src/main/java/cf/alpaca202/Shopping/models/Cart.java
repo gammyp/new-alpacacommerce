@@ -29,13 +29,23 @@ public class Cart {
     }
 
     public void addCart(Item item) {
-        for (Item element: this.items) {
-            if (item.getProductVarient().getId() == element.getProductVarient().getId()) {
-                element.setCount(element.getCount() + 1);
+        boolean duplicateItem = false;
+
+        for (int i = 0; i < this.items.size(); i++) {
+            if (this.items.get(i).getProductVarient().getId() == item.getProductVarient().getId()) {
+                this.items.get(i).setCount(this.items.get(i).getCount() + 1);
+                duplicateItem = true;
                 break;
             }
         }
-        this.items.add(item);
+
+        if (!duplicateItem) {
+            this.items.add(item);                        
+        }
+        
+        if (this.items.size() == 0) {
+            this.items.add(item);            
+        }
 
         double totalPrice = 0;
         for (Item element : this.items) {
