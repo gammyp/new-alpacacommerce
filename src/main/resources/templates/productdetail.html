@@ -2,12 +2,12 @@
 <html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{layouts/main}">
 	<body>
 		<div layout:fragment="content">
-			<div class="container pad-t20">
-				<div class="row">
-					<div class="col-4" th:each="product : ${product}">
-						<img th:src="${product.imagePath}" class='img-fluid'>
+
+				<div class="d-flex justify-content-around align-items-center">
+					<div th:each="product : ${product}">
+						<img th:src="${product.imagePath}" class='img-detail'>
 					</div>
-					<div class="col-8">
+					<div>
 						<table class="table table-borderless">
 							<thead >
 								<tr th:each="product : ${product}">
@@ -32,7 +32,6 @@
 						</button> 
 					</div>
 				</div>
-			</div>
 		</div>
 	</body>
 </html>

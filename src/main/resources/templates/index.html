@@ -6,22 +6,19 @@
 		<div class="container-fluid">
 			<div id="carouselExampleIndicators" class="carousel slide " data-ride="carousel">
 				<ol class="carousel-indicators">
-					<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-					<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-					<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="0" class="carousel-indicators-cycle active"></li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="1" class="carousel-indicators-cycle"></li>
+					<li data-target="#carouselExampleIndicators" data-slide-to="2" class="carousel-indicators-cycle"></li>
 				</ol>
-				<div class="carousel-inner carousel-size">
+				<div class="carousel-inner carousel-size my-3">
 					<div class="carousel-item active">
-						<img class="d-block w-100 banner" src="https://d1gnt0aflnpn8l.cloudfront.net/catalog/category/0418-newarrival-catebanner-my.jpg"
-						 alt="First slide">
+						<img class="d-block w-100" th:src="@{/images/cover1.jpg}"  alt="First slide">
 					</div>
 					<div class="carousel-item">
-						<img class="d-block w-100 banner" src="https://static.wixstatic.com/media/28e748_95364c56cdcc442f8a19c3a754f9ee1d~mv2.gif/v1/fill/w_498,h_172,al_c,q_90/file.jpg"
-						 alt="Second slide">
+						<img class="d-block w-100" th:src="@{/images/cover1.jpg}" alt="Second slide">
 					</div>
 					<div class="carousel-item">
-						<img class="d-block w-100 banner" src="https://www.getcuapp.com/wp-content/uploads/2017/10/banner-shopping.jpg"
-						 alt="Third slide">
+						<img class="d-block w-100" th:src="@{/images/cover1.jpg}" alt="Third slide">
 					</div>
 				</div>
 				<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
@@ -35,29 +32,26 @@
 			</div>
 		</div>
 
-		<div class="container">
+		<div class="container-fluid">
 			<div class="row">
-				<div th:each="productList : ${productlist}" class="col-4">
-					<div th:each="productListVarients : ${productList.productVarients}">
+				<div th:each="productList : ${productlist}" class="col-4 text-center mt-4 mb-4">
+					<div th:each="productListVarients : ${productList.productVarients}" class="productCard">
 						<a th:href="'/product/'+${productList.id}">
-							<img class="item-img" th:src="${productList.imagePath}">
-							<div class="text-primary text-left">
+							<img class="item-img text-center" th:src="${productList.imagePath}">
+							<div class="text-primary text-left mt-3">
 								<span th:text="${productList.name}"></span>
 								<span th:text="${productListVarients.name}"></span>
 							</div>
 						</a>
-							<div class="row">
-								<div class="col-7 item-price">
-									THB <span th:text="${productListVarients.price}"></span>
-								</div>
-								<div class="col-5 text-left">
-									<a class="text-dark" href="#cart"><i class="fa fa-cart-plus cart-icon ad2cart"></i></a>
-								</div>
-							</div>
+						<div class="text-left mt-2">
+							THB <span th:text="${productListVarients.price}" class="mr-3"></span>
+							<a class="text-dark" href="#cart"><i class="fa fa-cart-plus cart-icon text-right"></i></a>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+
 	</div>
 </body>
 
