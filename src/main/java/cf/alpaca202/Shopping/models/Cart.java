@@ -54,7 +54,12 @@ public class Cart {
         this.setTotalPrice(totalPrice);
     }
 
-    public void deleteItem(int index) {
-        items.remove(index);
+    public void deleteItem(long productVarientId) {
+        for(int i = 0; i < items.size(); i++) {
+            if(items.get(i).getProductVarient().getId() == productVarientId) {
+                items.remove(i);
+                break;
+            }
+        }
     }
 }
