@@ -50,7 +50,11 @@
 						<td th:text="${item.count}"></td>
 						<td class="text-right" th:text="${item.count * item.currentPrice}"></td>
 						<td class="text-right">
-							<img class="delete-btn" src="https://png.pngtree.com/svg/20170113/trash_bin_887050.png">
+								<form th:method="post" th:action="@{/deleteitemcart}">
+									<input type="hidden" name="productVarientId" th:value="${item.productVarient.id}">
+									<input type="hidden" name="redirect" value="/cart">
+									<button type="submit" class="fa fa-trash cart-icon text-dark"></button>
+								</form>
 						</td>
 					</tr>
 					<tr class="txt-bold">
