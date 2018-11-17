@@ -4,21 +4,24 @@
 		<div layout:fragment="content">
 			<div class="container pad-t20">
 				<div class="row">
-					<div class="col-4" th:each="product : ${product}">
+					<div class="col-4">
 						<img th:src="${product.imagePath}" class='img-fluid'>
 					</div>
 					<div class="col-8">
 						<table class="table table-borderless">
 							<thead >
-								<tr th:each="product : ${product}">
-									<td class="pd-name" style="border-bottom: 2px solid black;" th:text="${product.name}"></td>
+								<tr>
+									<td class="pd-name" style="border-bottom: 2px solid black;">
+										<span th:text="${product.name}"></span>
+										<span th:text="${productVarient.name}"></span>
+									</td>
 								</tr>
 							</thead>
 							<tbody>
 								<tr class="pd-price">
 									<td>THB <span th:text="${productVarient.price}"></span></td>
 								</tr>
-								<tr th:each="product : ${product}">
+								<tr>
 									<td>
 										<ul th:if="${product.description} != null" th:each="text : ${#strings.arraySplit(product.description, ',')}">
 											<li th:text="${text}"></li>
