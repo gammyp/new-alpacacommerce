@@ -43,4 +43,8 @@ public class Cart {
         }
         this.setTotalPrice(totalPrice);
     }
+
+    public void deleteItem(int index) {
+        items.remove(index);
+    }
 }
