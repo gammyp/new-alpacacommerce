@@ -39,7 +39,7 @@
 			<div class="row">
 				<th:block th:each="product : ${products}">
 					<div th:each="productVarient : ${product.productVarients}" class="col-4">
-						<a th:href="@{/product/{productId}/{productVarientId}(productId=${product.id}, productVarientId=${productVarient.id})}">
+						<a th:href="@{/product/{productVarientId}(productVarientId=${productVarient.id})}">
 							<img class="item-img" th:src="${product.imagePath}">
 							<div class="text-primary text-left">
 								<span th:text="${product.name}"></span>

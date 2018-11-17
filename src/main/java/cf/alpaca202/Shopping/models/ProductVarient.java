@@ -37,8 +37,6 @@ public class ProductVarient implements Serializable {
   @ManyToOne(fetch = FetchType.LAZY, optional = false)
   @JoinColumn(name="product_id")
   @OnDelete(action = OnDeleteAction.CASCADE)
-  @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-  @JsonIgnore
   private Product product;
 
   private String name;

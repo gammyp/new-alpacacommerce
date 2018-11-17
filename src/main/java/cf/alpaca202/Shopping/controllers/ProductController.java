@@ -30,15 +30,12 @@ public class ProductController {
     return "index";
   }
 
-  @RequestMapping(value = "/product/{product_id}/{product_varient_id}", method = RequestMethod.GET)
+  @RequestMapping(value = "/product/{product_varient_id}", method = RequestMethod.GET)
   public String getProduct(
     Model model,
-    @PathVariable(name = "product_id") Long productId,
     @PathVariable(name = "product_varient_id") Long productVarientId
   ) {
-    Product product = productService.getProductById(productId);
     ProductVarient productVarient = productVarientService.getProductVarientById(productVarientId);
-    model.addAttribute("product", product);
     model.addAttribute("productVarient", productVarient);
     return "productdetail";
   }
