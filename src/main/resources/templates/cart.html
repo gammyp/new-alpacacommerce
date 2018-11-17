@@ -13,70 +13,60 @@
 		</div>
 
 		<div class="container pad-t20">
-			<table class="table table-borderless">
+			<h2
+				class="text-center text-danger"
+				th:if="${session == null || session.cart == null || #lists.isEmpty(session.cart.items)}"				
+			>
+				No Product In Cart
+			</h2>
+			<table
+				class="table table-responsive table-bordered"
+				th:if="${session != null && session.cart != null && not #lists.isEmpty(session.cart.items)}"			
+			>
 				<thead>
-					<tr class="add-border">
-						<th class="add-border" scope="col" colspan="6">PRODUCT</th>
-						<th class="add-border" scope="col">YOUR OPTIONS</th>
-						<th class="add-border" scope="col">PRICE</th>
+					<tr>
+						<th>PRODUCT</th>
+						<th>Quantity</th>
+						<th>PRICE (THB)</th>
+						<th>ACTION</th>
 					</tr>
 				</thead>
 				<tbody>
-					<tr class="add-border">
-						<th scope="row" colspan="6">
+					<tr th:each="item : ${session.cart.items}">
+						<td>
 							<div class="row">
 								<div class="col-4 text-center">
-									<img src="https://notebookspec.com/nbs/upload_notebook/20180803-132021_c.jpg"  
-									class="img-thumbnail item-img">
+									<img
+										th:src="${item.productVarient.product.imagePath}"  
+										class="img-thumbnail item-img"
+									>
 								</div>
 								<div class="col-8 text-left">
-									MSI GL73 8RC032 17.3 
-									High Performance Gaming Laptop
+									<span th:text="${item.productVarient.product.name}"></span>
+									<span th:text="${item.productVarient.name}"></span>
 								</div>
 							</div>
-						</th>
-						<td class="add-border">
-							<form>
-								<div class="form-row align-items-center">
-									Quantity:
-									<div class="col-auto my-1">
-										<label class="mr-sm-2 sr-only" for="inlineFormCustomSelect">Preference</label>
-										<select class="custom-select mr-sm-2" id="inlineFormCustomSelect">
-											<option selected>Choose...</option>
-											<option value="1">1</option>
-											<option value="2">2</option>
-											<option value="3">3</option>
-										</select>
-									</div>
-								</div>
-							</form>
 						</td>
-						<td class="add-border">
-							THB xxxxxxxxxxxxx
-							<div class="text-right">
-								<img class="delete-btn" src="https://png.pngtree.com/svg/20170113/trash_bin_887050.png">
-							</div>
+						<td th:text="${item.count}"></td>
+						<td class="text-right" th:text="${item.count * item.currentPrice}"></td>
+						<td class="text-right">
+							<img class="delete-btn" src="https://png.pngtree.com/svg/20170113/trash_bin_887050.png">
 						</td>
-					</tr>
-					<tr>
-						<td ></td>
 					</tr>
 					<tr class="txt-bold">
-						<th scope="row" colspan="6">
-						</th>
+						<td colspan="2">
+						</td>
 						<td class="cart-sum pad-t20 ">
 							Subtotal before Delivery
 						</td>	
-						<td class="cart-sum pad-t20  text-right">					
-							THB xxxxxxx
-						</td>	
+						<td class="cart-sum pad-t20 text-right" th:text="${session.cart.totalPrice}"></td>	
 					</tr>
 					<tr>
-						<th scope="row" colspan="6">
-						</th>
-						<td colspan="6" class="cart-sum">
+						<td colspan="2">
+						</td>
+						<td colspan="2" class="cart-sum">
 							<a href="#login-payment">
-								<button type="button" class="btn btn-lg btn-block btn-checkout " >
+								<button type="button" class="btn btn-lg btn-block btn-checkout">
 									CHECKOUT
 								</button> 
 							</a>
