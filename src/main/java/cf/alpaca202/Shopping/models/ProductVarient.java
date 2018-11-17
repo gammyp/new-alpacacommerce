@@ -16,7 +16,6 @@ import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
 import org.hibernate.annotations.OnDelete;
@@ -34,11 +33,9 @@ public class ProductVarient implements Serializable {
   @GeneratedValue(strategy = GenerationType.IDENTITY)
   private long id;
 
-  @ManyToOne(fetch = FetchType.LAZY, optional = false)
+  @ManyToOne(fetch = FetchType.EAGER, optional = false)
   @JoinColumn(name="product_id")
   @OnDelete(action = OnDeleteAction.CASCADE)
-  @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
-  @JsonIgnore
   private Product product;
 
   private String name;

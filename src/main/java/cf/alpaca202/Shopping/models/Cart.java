@@ -29,22 +29,42 @@ public class Cart {
     }
 
     public void addCart(Item item) {
-        for (Item element: this.items) {
-            if (item.getProductVarient().getId() == element.getProductVarient().getId()) {
-                element.setCount(element.getCount() + 1);
+        boolean duplicateItem = false;
+
+        for (int i = 0; i < this.items.size(); i++) {
+            if (this.items.get(i).getProductVarient().getId() == item.getProductVarient().getId()) {
+                this.items.get(i).setCount(this.items.get(i).getCount() + 1);
+                duplicateItem = true;
                 break;
             }
         }
-        this.items.add(item);
 
+        if (!duplicateItem) {
+            this.items.add(item);                        
+        }
+        
+        if (this.items.size() == 0) {
+            this.items.add(item);            
+        }
+
+        this.calculateTotalPrice();
+    }
+
+    public void deleteItem(long productVarientId) {
+        for(int i = 0; i < items.size(); i++) {
+            if(items.get(i).getProductVarient().getId() == productVarientId) {
+                items.remove(i);
+                break;
+            }
+        }
+        this.calculateTotalPrice();
+    }
+
+    public void calculateTotalPrice() {
         double totalPrice = 0;
         for (Item element : this.items) {
             totalPrice += element.getCurrentPrice() * element.getCount();
         }
         this.setTotalPrice(totalPrice);
-    }
-
-    public int getTotalItems() {
-        return this.items.size();
     }
 }

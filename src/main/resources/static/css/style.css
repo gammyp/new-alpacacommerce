@@ -1,5 +1,5 @@
 .border-line {
-    border-bottom: 2px solid black;
+	border-bottom: 2px solid black;
 }
 .logo{
 	letter-spacing: 4px;
@@ -32,20 +32,11 @@
 }
 .cart-icon{
 	font-size: 24px;
-}
-#lblCartCount {
-    font-size: 12px;
-    background: #ff0000;
-    color: #fff;
-    padding: 0 5px;
-    vertical-align: top;
-    margin-left: -10px;
+	display: inline;
+	border: none;
+	background: none;
 }
 .badge {
-  padding-left: 9px;
-  padding-right: 9px;
-  -webkit-border-radius: 9px;
-  -moz-border-radius: 9px;
   border-radius: 9px;
 }
 .detail-img{
@@ -68,26 +59,16 @@
 	color: white;
 }
 .popover{
-    font-size: 20px;
-    text-align: center;
-    width: 100%;
-    color: black;
+	font-size: 20px;
+	text-align: center;
+	width: 100%;
+	color: black;
 }
 
 #itemCount {
   position: absolute;
-  display: none;
   top: -3px;
   right: 5px;
-  width: 20px;
-  height: 20px;
-  border-radius: 50%;
-  background: red;
-  color: white;
-}
-.badge{
-	padding-left: 0px;
-	padding-right: 0px;
 }
 .cart-title{
 	padding: 15px;
@@ -128,4 +109,7 @@
     width: 10px !important;
     height: 10px !important;
     border-radius: 100%;
+}
+.cart-inline{
+	display: inline;
 }

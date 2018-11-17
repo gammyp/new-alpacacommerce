@@ -2,36 +2,43 @@
 <html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{layouts/main}">
 	<body>
 		<div layout:fragment="content">
-
-				<div class="d-flex justify-content-around align-items-center">
-					<div th:each="product : ${product}">
-						<img th:src="${product.imagePath}" class='img-detail'>
-					</div>
-					<div>
-						<table class="table table-borderless">
-							<thead >
-								<tr th:each="product : ${product}">
-									<td class="pd-name" style="border-bottom: 2px solid black;" th:text="${product.name}"></td>
-								</tr>
-							</thead>
-							<tbody>
-								<tr class="pd-price" th:each="productVarient : ${product.productVarients}">
-									<td>THB <span th:text="${productVarient.price}"></span></td>
-								</tr>
-								<tr th:each="product : ${product}">
-									<td>
-										<ul th:if="${product.description} != null"  th:each="text : ${#strings.arraySplit(product.description, ',')}">
-											<li th:text="${text}"></li>
-										</ul>
-									</td>
-								</tr>
-							</tbody>
-						</table>
-						<button type="button" class="btn btn-lg btn-block ad2cart-btn text-center ad2cart" data-toggle="popover" data-placement="bottom" data-trigger="focus" data-content=" &#10004 item added to cart">
+			<div class="d-flex justify-content-around align-items-center">
+				<img th:src="${productVarient.product.imagePath}" class='img-detail'>
+				<div>
+					<table class="table table-borderless">
+						<thead >
+							<tr>
+								<td class="pd-name" style="border-bottom: 2px solid black;">
+									<span th:text="${productVarient.product.name}"></span>
+									<span th:text="${productVarient.name}"></span>
+								</td>
+							</tr>
+						</thead>
+						<tbody>
+							<tr class="pd-price">
+								<td>THB <span th:text="${productVarient.price}"></span></td>
+							</tr>
+							<tr>
+								<td>
+									<ul
+										th:if="${productVarient.product.description} != null"
+										th:each="text : ${#strings.arraySplit(productVarient.product.description, ',')}"
+									>
+										<li th:text="${text}"></li>
+									</ul>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+					<form th:method="post" th:action="@{/cart}">
+						<input type="hidden" name="productVarientId" th:value="${productVarient.id}">
+						<input type="hidden" name="redirect" th:value="@{/product/{productVarientId}(productVarientId=${productVarient.id})}">
+						<button type="submit" class="btn btn-lg btn-block ad2cart-btn text-center ad2cart">
 							ADD TO SHOPPING CART
-						</button> 
-					</div>
+						</button>
+					</form>
 				</div>
+			</div>
 		</div>
 	</body>
 </html>

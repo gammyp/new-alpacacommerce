@@ -34,21 +34,25 @@
 
 		<div class="container-fluid">
 			<div class="row">
-				<div th:each="productList : ${productlist}" class="col-4 text-center mt-4 mb-4">
-					<div th:each="productListVarients : ${productList.productVarients}" class="productCard">
-						<a th:href="'/product/'+${productList.id}">
-							<img class="item-img text-center" th:src="${productList.imagePath}">
+				<th:block th:each="product : ${products}">	
+					<div th:each="productVarient : ${product.productVarients}" class="col-4 productCard text-center mt-4 mb-4">
+						<a th:href="@{/product/{productVarientId}(productVarientId=${productVarient.id})}">
+							<img class="item-img text-center" th:src="${product.imagePath}">
 							<div class="text-primary text-left mt-3">
-								<span th:text="${productList.name}"></span>
-								<span th:text="${productListVarients.name}"></span>
+								<span th:text="${product.name}"></span>
+								<span th:text="${productVarient.name}"></span>
 							</div>
 						</a>
 						<div class="text-left mt-2">
-							THB <span th:text="${productListVarients.price}" class="mr-3"></span>
-							<a class="text-dark" href="#cart"><i class="fa fa-cart-plus cart-icon text-right"></i></a>
+							THB <span th:text="${productVarient.price}" class="mr-3"></span>
+								<form th:method="post" th:action="@{/cart}" class="cart-inline">
+									<input type="hidden" name="productVarientId" th:value="${productVarient.id}">
+									<input type="hidden" name="redirect" value="/">
+									<button type="submit" class="fa fa-cart-plus cart-icon text-right"></button>
+								</form>
 						</div>
 					</div>
-				</div>
+				</th:block>
 			</div>
 		</div>
 
