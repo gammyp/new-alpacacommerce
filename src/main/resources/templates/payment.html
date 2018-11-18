@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html xmlns:layout="http://www.w3.org/1999/xhtml" layout:decorate="~{layouts/main}">
+
+<body>
+	<div layout:fragment="content">
+		<form th:method="post" th:action="@{/payment}">
+			<div class="container">
+				<div class="row">
+					<div class="col-xs-12 offset-md-1 col-md-4">
+						<!----------- EXPRESS CHECKOUT ----------->
+						<h5 class="text-center my-4">EXPRESS CHECKOUT</h5>
+						<div class="form-group">
+							<label for="firstname" class="custom-label">Firstname</label>
+							<input type="text" class="form-control form-control-sm" id="firstname" required>
+						</div>
+						<div class="form-group">
+							<label for="lastname" class="custom-label">Lastname</label>
+							<input type="text" class="form-control form-control-sm" id="lastname" required>
+						</div>
+						<div class="form-group">
+							<label for="tel" class="custom-label">Tel.</label>
+							<input type="text" class="form-control form-control-sm" id="tel" required>
+						</div>
+						<div class="form-group mb-3">
+							<label for="address" class="custom-label">Address</label>
+							<textarea id="address" class="form-control" required></textarea>
+						</div>
+						<!----------- PAYMENT METHOD ---------------->
+						<h5 class="text-center my-4">PAYMENT METHOD</h5>
+						<div class="form-check ml-4 mb-2">
+							<input class="form-check-input" type="radio" name="payType" id="creditCard" value="CreditCard" checked>
+							<label class="form-check-label" for="creditCard">
+								Credit card
+							</label>
+						</div>
+						<div class="form-check ml-4 mb-3">
+							<input class="form-check-input" type="radio" name="payType" id="internetBanking" value="InternetBanking">
+							<label class="form-check-label" for="internetBanking">
+								Internet Banking
+							</label>
+						</div>
+					</div>
+					<div class="col-xs-12 offset-md-2 col-md-4">
+						<!----------- REVIEW YOUR ORDER ----------->
+						<h5 class="text-center my-4">REVIEW YOUR ORDER</h5>
+						<div class="row">
+							<div class="col-5">
+								<img class="w-100" src="https://assets.hermes.com/is/image/hermesproduct/075247CKM8_set?a=a&size=3000,3000&extend=300,300,300,300&align=0,1&$product_item_grid$&resMode=&extend=65,65,65,65"
+								 alt="Card image cap">
+							</div>
+							<div class="col-7">
+								<span class="product-name">MSI GL73 8RC032 17.3 High Performance Gaming Laptop </span>
+								<span class="product-detail">Quantity: 1</span>
+								<span class="product-detail">THB 28,900</span>
+							</div>
+						</div>
+						<hr>
+						<div class="row">
+							<div class="col-6">
+								<span class="bill-detail">Subtotal</span>
+							</div>
+							<div class="col-6 text-right">
+								<span class="bill-detail">29,490 THB</span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-6">
+								<span class="bill-detail">Tax</span>
+							</div>
+							<div class="col-6 text-right">
+								<span class="bill-detail">290 THB</span>
+							</div>
+						</div>
+						<div class="row">
+							<div class="col-6">
+								<span class="bill-detail">Shipping Total</span>
+							</div>
+							<div class="col-6 text-right">
+								<span class="bill-detail">-</span>
+							</div>
+						</div>
+						<hr>
+						<div class="row">
+							<div class="col-6">
+								<span class="bill-detail">Total</span>
+							</div>
+							<div class="col-6 text-right">
+								<span class="bill-detail">29,980 THB</span>
+							</div>
+						</div>
+						<p class="text-muted">Shipping By Kerry Company</p>
+						<a href="#"><button type="submit" class="btn btn-danger btn-block mb-4">PLACE YOUR ORDER</button></a>
+					</div>
+				</div>
+			</div>
+		</form>
+	</div>
+</body>
+
+</html>

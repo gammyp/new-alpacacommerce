@@ -113,3 +113,28 @@
 .cart-inline{
 	display: inline;
 }
+.form-control{
+	border-radius: 6px;
+	border: #000000 solid 0.5px;
+}
+.custom-label{
+	padding-left: 4px;
+	margin-bottom: 2px !important;
+}
+.product-name{
+	display: block;
+	font-size: 14px;
+	font-weight: bold;
+	margin-bottom: 3px;
+}
+.product-detail{
+	display: block;
+	font-size: 14px;
+}
+.bill-detail{
+	display: block;
+	padding: 5px 0;
+}
+hr{
+	border-color: #000000;
+}
