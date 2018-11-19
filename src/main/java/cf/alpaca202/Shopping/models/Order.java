@@ -43,7 +43,7 @@ public class Order implements Serializable {
     @OneToMany(cascade = CascadeType.ALL,
             fetch = FetchType.LAZY,
             mappedBy = "order")
-    private List<OrderItem> orderItems;
+    private List<Item> items;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name="customer_id")
@@ -65,35 +65,34 @@ public class Order implements Serializable {
     public Order() {
     }
 
-    public Order(long id, boolean isPay, double shippingCost, double tax, List<OrderItem> orderItems, Customer customer, Date createdAt, Date updatedAt) {
-        this.id = id;
+    public Order(boolean isPay, double shippingCost, double tax, List<Item> items, Customer customer, Date createdAt, Date updatedAt) {
         this.isPay = isPay;
         this.shippingCost = shippingCost;
         this.tax = tax;
-        this.orderItems = orderItems;
+        this.items = items;
         this.customer = customer;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
 
     public long getId() {
-        return this.id;
+        return id;
     }
 
     public void setId(long id) {
         this.id = id;
     }
 
-    public boolean isIsPay() {
-        return this.isPay;
+    public boolean isPay() {
+        return isPay;
     }
 
-    public void setIsPay(boolean isPay) {
-        this.isPay = isPay;
+    public void setPay(boolean pay) {
+        isPay = pay;
     }
 
     public double getShippingCost() {
-        return this.shippingCost;
+        return shippingCost;
     }
 
     public void setShippingCost(double shippingCost) {
@@ -101,23 +100,23 @@ public class Order implements Serializable {
     }
 
     public double getTax() {
-        return this.tax;
+        return tax;
     }
 
     public void setTax(double tax) {
         this.tax = tax;
     }
 
-    public List<OrderItem> getOrderItems() {
-        return this.orderItems;
+    public List<Item> getItems() {
+        return items;
     }
 
-    public void setOrderItems(List<OrderItem> orderItems) {
-        this.orderItems = orderItems;
+    public void setItems(List<Item> items) {
+        this.items = items;
     }
 
     public Customer getCustomer() {
-        return this.customer;
+        return customer;
     }
 
     public void setCustomer(Customer customer) {
@@ -125,7 +124,7 @@ public class Order implements Serializable {
     }
 
     public Date getCreatedAt() {
-        return this.createdAt;
+        return createdAt;
     }
 
     public void setCreatedAt(Date createdAt) {
@@ -133,7 +132,7 @@ public class Order implements Serializable {
     }
 
     public Date getUpdatedAt() {
-        return this.updatedAt;
+        return updatedAt;
     }
 
     public void setUpdatedAt(Date updatedAt) {
