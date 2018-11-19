@@ -1,3 +1,6 @@
+body{
+	min-width: 440px;
+}
 .border-line {
 	border-bottom: 2px solid black;
 }
@@ -7,9 +10,6 @@
 }
 .pad-nav{
 	padding: 5px;
-}
-.pad-menu{
-	padding: 10px;
 }
 .carousel-size{
 	margin-bottom: 16px;
@@ -35,6 +35,9 @@
 	display: inline;
 	border: none;
 	background: none;
+}
+.cart-icon:hover{
+	color:#3195ff;
 }
 .badge {
   border-radius: 9px;
@@ -137,4 +140,7 @@
 }
 hr{
 	border-color: #000000;
+}
+.fb-color{
+	background-color: #4267b2;
 }

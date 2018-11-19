@@ -1,23 +1,20 @@
 <div th:fragment="nav" class="container-fluid">
   <div class="row white pad-nav">
-    <div class="col-lg-12 d-flex flex-column flex-md-row align-items-center bg-white border-line box-shadow navbar-color navbar-fix pad-nav">
-      <a th:href="@{/}" class="my-0 mr-md-auto text-dark d-none d-md-block logo" >SHOP WORLD</a>
-      <div>
-        <nav class="right">
-          <input type="text" name="textSearch" placeholder="Search" class="textSearch">
-          <a class="text-dark pad-menu" href="#search"><i class="fa fa-search"></i></a>
-          <a class="text-dark pad-menu" th:href="@{/login}"><i class="fa fa-user"></i></a>
-          <a class="text-dark pad-menu" th:href="@{/cart}"><i class="fa fa-shopping-cart"></i>
-            <span
-              class='badge badge-danger'
-              id='itemCount'
-              th:text="${#lists.size(session.cart.items)}"
-              th:if="${session != null && session.cart != null && not #lists.isEmpty(session.cart.items)}"
-            >
-            </span>
-          </a>
-        </nav>
+    <div class="col-lg-12 d-flex justify-content-between bg-white border-line box-shadow navbar-color navbar-fix pad-nav">
+      <a th:href="@{/}" class="text-dark logo" >SHOP WORLD</a>
+      <div class="cart-inline">
+        <input type="text" name="textSearch" placeholder="Search" class="textSearch mr-2">
+        <a class="text-dark mr-2" href="#search"><i class="fa fa-search"></i></a>
+        <a class="text-dark mr-2" th:href="@{/login}"><i class="fa fa-user"></i></a>
+        <a class="text-dark mr-2" th:href="@{/cart}"><i class="fa fa-shopping-cart"></i>
+          <span
+            class='badge badge-danger'
+            id='itemCount'
+            th:text="${#lists.size(session.cart.items)}"
+            th:if="${session != null && session.cart != null && not #lists.isEmpty(session.cart.items)}"
+          >
+          </span>
+        </a>
       </div>
-    </div>
   </div>
 </div>
