@@ -1,5 +1,6 @@
 package cf.alpaca202.Shopping.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import java.io.Serializable;
 import java.util.Date;
@@ -12,16 +13,23 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
+
+import org.hibernate.annotations.OnDelete;
+import org.hibernate.annotations.OnDeleteAction;
 import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
 @EntityListeners(AuditingEntityListener.class)
+@Table(name = "orders")
 @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 public class Order implements Serializable {
     @Id
@@ -37,18 +45,12 @@ public class Order implements Serializable {
             mappedBy = "order")
     private List<OrderItem> orderItems;
 
-    @OneToOne(fetch=FetchType.LAZY)
-    @PrimaryKeyJoinColumn
+    @ManyToOne(fetch = FetchType.LAZY, optional = false)
+    @JoinColumn(name="customer_id")
+    @OnDelete(action = OnDeleteAction.CASCADE)
+    @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
+    @JsonIgnore
     private Customer customer;
-
-    @OneToOne(fetch=FetchType.LAZY)
-    @PrimaryKeyJoinColumn
-    private PayType payType;
-
-    @OneToMany(cascade = CascadeType.ALL,
-            fetch = FetchType.LAZY,
-            mappedBy = "order")
-    private List<Tracking> tracking;
 
     @Temporal(TemporalType.TIMESTAMP)
     @CreatedDate
@@ -60,57 +62,30 @@ public class Order implements Serializable {
     @Column(name = "updated_at")
     private Date updatedAt;
 
-    public Order(long id, List<OrderItem> orderItems, Customer customer, PayType payType, boolean isPay, double shippingCost, List<Tracking> tracking, double tax, Date createdAt, Date updatedAt) {
+    public Order() {
+    }
+
+    public Order(long id, boolean isPay, double shippingCost, double tax, List<OrderItem> orderItems, Customer customer, Date createdAt, Date updatedAt) {
         this.id = id;
-        this.orderItems = orderItems;
-        this.customer = customer;
-        this.payType = payType;
         this.isPay = isPay;
         this.shippingCost = shippingCost;
-        this.tracking = tracking;
         this.tax = tax;
+        this.orderItems = orderItems;
+        this.customer = customer;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
 
-    public Order() {
-
-    }
-
     public long getId() {
-        return id;
+        return this.id;
     }
 
     public void setId(long id) {
         this.id = id;
     }
 
-    public List<OrderItem> getOrderItems() {
-        return orderItems;
-    }
-
-    public void setOrderItems(List<OrderItem> orderItems) {
-        this.orderItems = orderItems;
-    }
-
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
-
-    public PayType getPayType() {
-        return payType;
-    }
-
-    public void setPayType(PayType payType) {
-        this.payType = payType;
-    }
-
     public boolean isIsPay() {
-        return isPay;
+        return this.isPay;
     }
 
     public void setIsPay(boolean isPay) {
@@ -118,31 +93,39 @@ public class Order implements Serializable {
     }
 
     public double getShippingCost() {
-        return shippingCost;
+        return this.shippingCost;
     }
 
     public void setShippingCost(double shippingCost) {
         this.shippingCost = shippingCost;
     }
 
-    public List<Tracking> getTracking() {
-        return tracking;
-    }
-
-    public void setTracking(List<Tracking> tracking) {
-        this.tracking = tracking;
-    }
-
     public double getTax() {
-        return tax;
+        return this.tax;
     }
 
     public void setTax(double tax) {
         this.tax = tax;
     }
 
+    public List<OrderItem> getOrderItems() {
+        return this.orderItems;
+    }
+
+    public void setOrderItems(List<OrderItem> orderItems) {
+        this.orderItems = orderItems;
+    }
+
+    public Customer getCustomer() {
+        return this.customer;
+    }
+
+    public void setCustomer(Customer customer) {
+        this.customer = customer;
+    }
+
     public Date getCreatedAt() {
-        return createdAt;
+        return this.createdAt;
     }
 
     public void setCreatedAt(Date createdAt) {
@@ -150,12 +133,10 @@ public class Order implements Serializable {
     }
 
     public Date getUpdatedAt() {
-        return updatedAt;
+        return this.updatedAt;
     }
 
     public void setUpdatedAt(Date updatedAt) {
         this.updatedAt = updatedAt;
     }
-
-    
 }
