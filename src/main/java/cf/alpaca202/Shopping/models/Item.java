@@ -33,11 +33,11 @@ public class Item implements Serializable {
     private long id;
     
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
-    @JoinColumn(name = "customer_id")
+    @JoinColumn(name = "order_id")
     @OnDelete(action = OnDeleteAction.CASCADE)
     @JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
     @JsonIgnore
-    private Customer customer;
+    private Order order;
 
     @ManyToOne(fetch = FetchType.LAZY, optional = false)
     @JoinColumn(name = "product_varient_id")
@@ -68,16 +68,15 @@ public class Item implements Serializable {
         this.currentPrice = currentPrice;
     }
 
-    public Item(long id, Customer customer, ProductVarient productVarient, int count, double currentPrice, Date createdAt, Date updatedAt) {
-        this.id = id;
-        this.customer = customer;
+    public Item(Order order, ProductVarient productVarient, int count, double currentPrice, Date createdAt, Date updatedAt) {
+        this.order = order;
         this.productVarient = productVarient;
         this.count = count;
         this.currentPrice = currentPrice;
         this.createdAt = createdAt;
         this.updatedAt = updatedAt;
     }
-    
+
     public long getId() {
         return id;
     }
@@ -86,12 +85,12 @@ public class Item implements Serializable {
         this.id = id;
     }
 
-    public Customer getCustomer() {
-        return customer;
+    public Order getOrder() {
+        return order;
     }
 
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
+    public void setOrder(Order order) {
+        this.order = order;
     }
 
     public ProductVarient getProductVarient() {
