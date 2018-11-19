@@ -46,6 +46,8 @@ public class Account implements Serializable {
   @Column(name = "image_path")
   private String imagePath;
 
+  
+  
   @Column(name = "phone_number")
   private String phoneNumber;
 
@@ -60,6 +62,12 @@ public class Account implements Serializable {
   private Date updatedAt;
 
   public Account() {
+  }
+  
+  public Account(String firstname, String lastname, String phoneNumber) {
+    this.firstname = firstname;
+    this.lastname = lastname;
+    this.phoneNumber = phoneNumber;
   }
 
   public Account(long id, String email, String password, String firstname, String lastname, Date birthday, List<Address> addresses, String imagePath, String phoneNumber, Date createdAt, Date updatedAt) {
