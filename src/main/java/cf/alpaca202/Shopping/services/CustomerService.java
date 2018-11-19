@@ -7,7 +7,7 @@ import cf.alpaca202.Shopping.models.Customer;
 import cf.alpaca202.Shopping.repositories.CustomerRepository;
 
 @Service
-public class CustomerServices{
+public class CustomerService {
     @Autowired
     private CustomerRepository customerRepository;
 
