@@ -5,5 +5,5 @@ RUN mvn -f /usr/src/app/pom.xml -DskipTests clean package
 
 FROM openjdk:8
 COPY --from=build /usr/src/app/target/Shopping-1.0.0.jar /usr/app/Shopping-1.0.0.jar
-EXPOSE 8080
+EXPOSE 8443
 ENTRYPOINT ["java","-jar","/usr/app/Shopping-1.0.0.jar"]
