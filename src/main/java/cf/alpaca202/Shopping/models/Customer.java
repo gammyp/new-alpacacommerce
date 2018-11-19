@@ -45,7 +45,7 @@ public class Customer implements Serializable {
 
     @OneToMany(cascade = CascadeType.ALL,
           fetch = FetchType.LAZY,
-          mappedBy = "order")
+          mappedBy = "customer")
     private List<Order> orders;
 
     @Temporal(TemporalType.TIMESTAMP)
