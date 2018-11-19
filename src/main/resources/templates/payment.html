@@ -11,19 +11,19 @@
 						<h5 class="text-center my-4">EXPRESS CHECKOUT</h5>
 						<div class="form-group">
 							<label for="firstname" class="custom-label">Firstname</label>
-							<input type="text" class="form-control form-control-sm" id="firstname" required>
+							<input type="text" class="form-control form-control-sm" id="firstname" name="firstname" required>
 						</div>
 						<div class="form-group">
 							<label for="lastname" class="custom-label">Lastname</label>
-							<input type="text" class="form-control form-control-sm" id="lastname" required>
+							<input type="text" class="form-control form-control-sm" id="lastname" name="lastname" required>
 						</div>
 						<div class="form-group">
 							<label for="tel" class="custom-label">Tel.</label>
-							<input type="text" class="form-control form-control-sm" id="tel" required>
+							<input type="text" class="form-control form-control-sm" id="tel" name="tel" required>
 						</div>
 						<div class="form-group mb-3">
 							<label for="address" class="custom-label">Address</label>
-							<textarea id="address" class="form-control" required></textarea>
+							<textarea id="address" name="address" class="form-control" required></textarea>
 						</div>
 						<!----------- PAYMENT METHOD ---------------->
 						<h5 class="text-center my-4">PAYMENT METHOD</h5>
@@ -43,15 +43,23 @@
 					<div class="col-xs-12 offset-md-2 col-md-4">
 						<!----------- REVIEW YOUR ORDER ----------->
 						<h5 class="text-center my-4">REVIEW YOUR ORDER</h5>
-						<div class="row">
+						<div class="row" th:each="item : ${session.cart.items}">
 							<div class="col-5">
-								<img class="w-100" src="https://assets.hermes.com/is/image/hermesproduct/075247CKM8_set?a=a&size=3000,3000&extend=300,300,300,300&align=0,1&$product_item_grid$&resMode=&extend=65,65,65,65"
-								 alt="Card image cap">
+								<img class="w-100" th:src="${item.productVarient.product.imagePath}" alt="Card image cap">
 							</div>
 							<div class="col-7">
-								<span class="product-name">MSI GL73 8RC032 17.3 High Performance Gaming Laptop </span>
-								<span class="product-detail">Quantity: 1</span>
-								<span class="product-detail">THB 28,900</span>
+								<span class="product-name">
+									<span th:text="${item.productVarient.product.name}"></span>
+									<span th:text="${item.productVarient.name}"></span>
+								</span>
+								<span class="product-detail">
+									<span>Quantity: </span>
+									<span th:text="${item.count}"></span>
+								</span>
+								<span class="product-detail">
+									<span th:text="${item.count * item.currentPrice}"></span>
+									<span> THB</span>
+								</span>
 							</div>
 						</div>
 						<hr>
@@ -60,7 +68,10 @@
 								<span class="bill-detail">Subtotal</span>
 							</div>
 							<div class="col-6 text-right">
-								<span class="bill-detail">29,490 THB</span>
+								<span class="bill-detail">
+									<span th:text="${session.cart.totalPrice}"></span>
+									<span> THB</span>
+								</span>
 							</div>
 						</div>
 						<div class="row">
@@ -68,7 +79,7 @@
 								<span class="bill-detail">Tax</span>
 							</div>
 							<div class="col-6 text-right">
-								<span class="bill-detail">290 THB</span>
+								<span class="bill-detail">0 THB</span>
 							</div>
 						</div>
 						<div class="row">
@@ -76,7 +87,7 @@
 								<span class="bill-detail">Shipping Total</span>
 							</div>
 							<div class="col-6 text-right">
-								<span class="bill-detail">-</span>
+								<span class="bill-detail">50 THB</span>
 							</div>
 						</div>
 						<hr>
@@ -85,11 +96,24 @@
 								<span class="bill-detail">Total</span>
 							</div>
 							<div class="col-6 text-right">
-								<span class="bill-detail">29,980 THB</span>
+								<span class="bill-detail">
+									<span th:text="${session.cart.totalPrice + 50}"></span>
+									<span> THB</span>
+								</span>
 							</div>
 						</div>
 						<p class="text-muted">Shipping By Kerry Company</p>
-						<a href="#"><button type="submit" class="btn btn-danger btn-block mb-4">PLACE YOUR ORDER</button></a>
+						<script
+							th:attr="data-key=${omisePublicKey}, data-amount=${(session.cart.totalPrice + 50) * 100}"
+							type="text/javascript"
+							src="https://cdn.omise.co/omise.js"
+							data-frame-label="SHOP WORLD"
+							data-frame-description="Project INT202"
+							data-amount="10025"
+							data-currency="THB"
+							data-button-label="CHECKOUT"
+						>
+						</script>
 					</div>
 				</div>
 			</div>
