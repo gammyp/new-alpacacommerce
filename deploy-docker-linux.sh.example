@@ -1,0 +1,5 @@
+docker run -d -p 8080:8080 --env DB_URL=(Your DB URL and schema) \ 
+	                            --env DB_USERNAME=(Your DB User) \
+				    --env DB_PASSWORD=(Your DB Password) \
+				    --env OMISE_PUBLIC_KEY=(Your Key) \
+                                    --env OMISE_PRIVATE_KEY=(Your Key) game416/alpacacommerce;
