@@ -33,17 +33,11 @@
 								Credit card
 							</label>
 						</div>
-						<div class="form-check ml-4 mb-3">
-							<input class="form-check-input" type="radio" name="payType" id="internetBanking" value="InternetBanking">
-							<label class="form-check-label" for="internetBanking">
-								Internet Banking
-							</label>
-						</div>
 					</div>
 					<div class="col-xs-12 offset-md-2 col-md-4">
 						<!----------- REVIEW YOUR ORDER ----------->
 						<h5 class="text-center my-4">REVIEW YOUR ORDER</h5>
-						<div class="row" th:each="item : ${session.cart.items}">
+						<div class="row mb-3" th:each="item : ${session.cart.items}">
 							<div class="col-5">
 								<img class="w-100" th:src="${item.productVarient.product.imagePath}" alt="Card image cap">
 							</div>
@@ -111,7 +105,7 @@
 							data-frame-description="Project INT202"
 							data-amount="10025"
 							data-currency="THB"
-							data-button-label="CHECKOUT"
+							data-button-label="PLACE YOUR ORDER"
 						>
 						</script>
 					</div>

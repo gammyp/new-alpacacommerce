@@ -38,6 +38,7 @@ body{
 }
 .cart-icon:hover{
 	color:#3195ff;
+	cursor: pointer;	
 }
 .badge {
   border-radius: 9px;
@@ -143,4 +144,17 @@ hr{
 }
 .fb-color{
 	background-color: #4267b2;
+}
+.omise-checkout-button{
+	background-color: #F20F0F;
+	font-weight: bold;
+	color: #FFFFFF;
+	width: 100%;
+	border: none;
+    padding: 7px 0;
+    border-radius: 6px;
+    margin-bottom: 15px;
+}
+.omise-checkout-button:hover{
+	cursor: pointer;	
 }
