@@ -27,6 +27,7 @@
 					<tr>
 						<th>PRODUCT</th>
 						<th>Quantity</th>
+						<th>Price Per Item (THB)</th>
 						<th>PRICE (THB)</th>
 						<th>ACTION</th>
 					</tr>
@@ -48,6 +49,7 @@
 							</div>
 						</td>
 						<td th:text="${item.count}"></td>
+						<td th:text="${item.currentPrice}"></td>
 						<td class="text-right" th:text="${item.count * item.currentPrice}"></td>
 						<td class="text-right">
 								<form th:method="post" th:action="@{/deleteitemcart}">
@@ -58,7 +60,7 @@
 						</td>
 					</tr>
 					<tr class="txt-bold">
-						<td colspan="2">
+						<td colspan="3">
 						</td>
 						<td class="cart-sum pad-t20 ">
 							Subtotal before Delivery
@@ -66,7 +68,7 @@
 						<td class="cart-sum pad-t20 text-right" th:text="${session.cart.totalPrice}"></td>	
 					</tr>
 					<tr>
-						<td colspan="2">
+						<td colspan="3">
 						</td>
 						<td colspan="2" class="cart-sum">
 							<a th:href="@{/payment}">
