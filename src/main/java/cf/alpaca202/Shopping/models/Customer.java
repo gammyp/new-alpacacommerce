@@ -80,7 +80,7 @@ public class Customer implements Serializable {
         return this.account;
     }
 
-    public void setAccount_id(Account account) {
+    public void setAccount(Account account) {
         this.account = account;
     }
 

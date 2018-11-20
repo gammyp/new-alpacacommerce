@@ -9,7 +9,7 @@ import org.springframework.stereotype.Service;
 public class AddressService {
 
     @Autowired
-    AddressRepository addressRepository;
+    private AddressRepository addressRepository;
 
     public Address createAddress(Address address) {
         return addressRepository.save(address);
